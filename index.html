@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<title>मला माफ कर</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    color:white;
+    text-align:center;
+}
+
+.page{
+    display:none;
+    min-height:100vh;
+    padding:70px 20px;
+    animation:fade 0.8s ease;
+}
+.active{display:block;}
+
+h1{font-size:3rem;}
+
+.text{
+    font-size:1.5rem;
+    max-width:850px;
+    margin:25px auto;
+    line-height:1.7;
+    min-height:80px;
+}
+
+img{
+    width:300px;
+    margin:25px 0;
+    border-radius:20px;
+}
+
+button{
+    padding:15px 40px;
+    font-size:1.2rem;
+    border-radius:35px;
+    border:none;
+    cursor:pointer;
+    margin:15px;
+    background:white;
+    color:#ff4b6e;
+    font-weight:bold;
+    transition:0.3s;
+}
+button:hover{transform:scale(1.08);}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(40px);}
+    to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+<h1>एक गोष्ट सांगायची आहे…</h1>
+<img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif">
+<div class="text" data-text="हा page कोणताही बहाणा देण्यासाठी नाही. फक्त मनातली गोष्ट शांतपणे सांगायची आहे."></div>
+<button onclick="go(2)">पुढे</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+<h1>मनापासून</h1>
+<img src="https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif">
+<div class="text" data-text="माझ्या कोणत्यातरी वागण्यामुळे तुला वाईट वाटलं असेल, तर ते जाणूनबुजून नव्हतं."></div>
+<button onclick="go(3)">वाचते आहे</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+<h1>माझी चूक</h1>
+<img src="https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif">
+<div class="text" data-text="मी स्वतःला योग्य ठरवणार नाही. चूक माझी असेल तर ती मान्य करतो."></div>
+<button onclick="go(4)">पुढे</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+<h1>मला माफ कर</h1>
+<img src="https://media.giphy.com/media/3o7abAhvGvXb1P8zra/giphy.gif">
+<div class="text" data-text="माझ्या शब्दांमुळे किंवा वागण्यामुळे तुला दुखावलं असेल, तर त्यासाठी मी मनापासून माफी मागतो."></div>
+<button onclick="go(5)">पुढे</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+<h1>राग धरू नकोस</h1>
+<img src="https://media.giphy.com/media/l0HlUQqW2wL7Z9J5u/giphy.gif">
+<div class="text" data-text="तुझं गप्प राहणं मला खूप काही शिकवत आहे. मला अजून समजूतदार व्हायचं आहे."></div>
+<button onclick="go(6)">समजते आहे</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+<h1>एक गोष्ट नक्की</h1>
+<img src="https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif">
+<div class="text" data-text="मी परफेक्ट नाही, पण प्रामाणिक आहे. आणि तुझ्या भावनांचा आदर करतो."></div>
+<button onclick="go(7)">शेवटचं</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+<h1>धन्यवाद 🌸</h1>
+<img src="https://media.giphy.com/media/xTiTnMhJTwNHChdTZS/giphy.gif">
+<div class="text" data-text="हे सगळं शांतपणे वाचल्याबद्दल धन्यवाद. कधीही मन झालं, एक साधा reply सुद्धा पुरेसा आहे."></div>
+<p style="font-size:1.2rem;margin-top:20px;">— मनापासून माफी मागणारा</p>
+</div>
+
+<script>
+function go(n){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+let page=document.getElementById('p'+n);
+page.classList.add('active');
+startTyping(page);
+}
+
+function startTyping(page){
+let el=page.querySelector('.text');
+if(!el) return;
+let text=el.getAttribute('data-text');
+el.innerHTML='';
+let i=0;
+let interval=setInterval(()=>{
+  el.innerHTML+=text.charAt(i);
+  i++;
+  if(i>=text.length) clearInterval(interval);
+},40);
+}
+
+startTyping(document.getElementById('p1'));
+</script>
+
+</body>
+</html>
